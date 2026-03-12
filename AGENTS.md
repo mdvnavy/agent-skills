@@ -25,6 +25,10 @@ skills/
 packages/
   skills-build/           # Generic build system for all skills
   evals/                  # LLM evaluation system for skills
+
+schema/
+  skill.schema.json       # JSON Schema for SKILL.md frontmatter
+  reference.schema.json   # JSON Schema for reference file frontmatter
 ```
 
 ## Commands
@@ -210,3 +214,59 @@ Skills should only contain essential files. Do NOT create:
 - CHANGELOG.md
 
 The skill should contain only what an AI agent needs to do the job.
+
+---
+
+## Schemas
+
+The `schema/` directory contains JSON Schemas for validating frontmatter in
+SKILL.md and reference files. These schemas are compatible with the ClawHub
+field definitions.
+
+### `schema/skill.schema.json`
+
+Validates the YAML frontmatter of every `SKILL.md` file.
+
+| Field         | Required | Type             | Constraints                                                              |
+| ------------- | -------- | ---------------- | ------------------------------------------------------------------------ |
+| `name`        | Yes      | string           | 1–64 chars. Pattern: `^[a-z0-9]+(-[a-z0-9]+)*$`. Must match dir name.  |
+| `description` | Yes      | string           | 1–1024 chars.                                                            |
+| `license`     | No       | string           | License name or path to a bundled file.                                  |
+| `metadata`    | No       | object           | Arbitrary key-value pairs (e.g., `author`, `version`).                  |
+
+Example valid frontmatter:
+
+```yaml
+---
+name: pdf-processing
+description: >
+  Extracts and processes PDF content. Use when working with PDF files,
+  parsing documents, or converting PDF to other formats.
+license: MIT
+metadata:
+  author: acme
+  version: "1.0.0"
+---
+```
+
+### `schema/reference.schema.json`
+
+Validates the YAML frontmatter of every reference file in `references/*.md`.
+
+| Field               | Required | Type          | Constraints                                                       |
+| ------------------- | -------- | ------------- | ----------------------------------------------------------------- |
+| `title`             | Yes      | string        | Action-oriented title, at least 1 char.                           |
+| `impact`            | Yes      | string (enum) | `CRITICAL`, `HIGH`, `MEDIUM-HIGH`, `MEDIUM`, `LOW-MEDIUM`, or `LOW`. |
+| `impactDescription` | No       | string        | Quantified benefit (e.g., "100-1000x faster queries").            |
+| `tags`              | No       | string\|array | Comma-separated string or array of keyword strings.               |
+
+Example valid frontmatter:
+
+```yaml
+---
+title: Add Indexes on WHERE and JOIN Columns
+impact: CRITICAL
+impactDescription: 100-1000x faster queries on large tables
+tags: indexes, performance, sequential-scan, query-optimization
+---
+```

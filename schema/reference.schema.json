@@ -1,0 +1,51 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://github.com/mdvnavy/agent-skills/schema/reference.schema.json",
+	"title": "Reference File Frontmatter",
+	"description": "JSON Schema for reference file frontmatter fields used in skills/*/references/*.md files.",
+	"type": "object",
+	"required": ["title", "impact"],
+	"additionalProperties": false,
+	"properties": {
+		"title": {
+			"type": "string",
+			"description": "Action-oriented title for the reference rule (e.g., 'Add Indexes on WHERE and JOIN Columns').",
+			"minLength": 1,
+			"examples": [
+				"Add Indexes on WHERE and JOIN Columns",
+				"Use Connection Pooling"
+			]
+		},
+		"impact": {
+			"type": "string",
+			"description": "The impact level of this rule, indicating how much following it affects performance or correctness.",
+			"enum": ["CRITICAL", "HIGH", "MEDIUM-HIGH", "MEDIUM", "LOW-MEDIUM", "LOW"]
+		},
+		"impactDescription": {
+			"type": "string",
+			"description": "Quantified benefit of applying this rule (e.g., '100-1000x faster queries on large tables').",
+			"examples": [
+				"100-1000x faster queries on large tables",
+				"Reduces connection overhead by up to 90%"
+			]
+		},
+		"tags": {
+			"description": "Keywords describing the rule. Can be a comma-separated string or an array of strings.",
+			"oneOf": [
+				{
+					"type": "string",
+					"description": "Comma-separated list of keywords.",
+					"examples": [
+						"indexes, performance, sequential-scan, query-optimization"
+					]
+				},
+				{
+					"type": "array",
+					"items": { "type": "string" },
+					"description": "Array of keyword strings.",
+					"examples": [["indexes", "performance", "sequential-scan"]]
+				}
+			]
+		}
+	}
+}
