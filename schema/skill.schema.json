@@ -1,0 +1,50 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://github.com/mdvnavy/agent-skills/schema/skill.schema.json",
+	"title": "Skill Frontmatter",
+	"description": "JSON Schema for SKILL.md frontmatter fields (compatible with ClawHub).",
+	"type": "object",
+	"required": ["name", "description"],
+	"additionalProperties": false,
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "Unique skill identifier. Must match the parent directory name. Lowercase letters, numbers, and hyphens only.",
+			"minLength": 1,
+			"maxLength": 64,
+			"pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+			"examples": [
+				"pdf-processing",
+				"data-analysis",
+				"supabase-postgres-best-practices"
+			]
+		},
+		"description": {
+			"type": "string",
+			"description": "What the skill does and when to use it. This is the primary trigger mechanism — include both what the skill does and the specific contexts in which it should activate.",
+			"minLength": 1,
+			"maxLength": 1024,
+			"examples": [
+				"Supabase database best practices for schema design, RLS policies, indexing, and query optimization. Use when working with Supabase projects, writing PostgreSQL migrations, configuring Row Level Security, or optimizing database performance."
+			]
+		},
+		"license": {
+			"type": "string",
+			"description": "License name (e.g., 'MIT') or path to a bundled license file."
+		},
+		"metadata": {
+			"type": "object",
+			"description": "Arbitrary key-value pairs for additional skill information such as author, version, organization, or date.",
+			"additionalProperties": true,
+			"examples": [
+				{
+					"author": "supabase",
+					"version": "1.1.0",
+					"organization": "Supabase",
+					"date": "January 2026",
+					"abstract": "Comprehensive guide for Postgres performance optimization."
+				}
+			]
+		}
+	}
+}
