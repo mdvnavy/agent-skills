@@ -258,7 +258,7 @@ Validates the YAML frontmatter of every reference file in `references/*.md`.
 | `title`             | Yes      | string        | Action-oriented title, at least 1 char.                           |
 | `impact`            | Yes      | string (enum) | `CRITICAL`, `HIGH`, `MEDIUM-HIGH`, `MEDIUM`, `LOW-MEDIUM`, or `LOW`. |
 | `impactDescription` | No       | string        | Quantified benefit (e.g., "100-1000x faster queries").            |
-| `tags`              | No       | string\|array | Comma-separated string or array of keyword strings.               |
+| `tags`              | No       | string        | Comma-separated string of keyword strings.                        |
 
 Example valid frontmatter:
 

@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
-	"$id": "https://github.com/mdvnavy/agent-skills/schema/skill.schema.json",
+	"$id": "https://github.com/supabase/agent-skills/schema/skill.schema.json",
 	"title": "Skill Frontmatter",
 	"description": "JSON Schema for SKILL.md frontmatter fields (compatible with ClawHub).",
 	"type": "object",
