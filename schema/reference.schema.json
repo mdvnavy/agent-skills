@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
-	"$id": "https://github.com/mdvnavy/agent-skills/schema/reference.schema.json",
+	"$id": "https://github.com/supabase/agent-skills/schema/reference.schema.json",
 	"title": "Reference File Frontmatter",
 	"description": "JSON Schema for reference file frontmatter fields used in skills/*/references/*.md files.",
 	"type": "object",
@@ -30,22 +30,9 @@
 			]
 		},
 		"tags": {
-			"description": "Keywords describing the rule. Can be a comma-separated string or an array of strings.",
-			"oneOf": [
-				{
-					"type": "string",
-					"description": "Comma-separated list of keywords.",
-					"examples": [
-						"indexes, performance, sequential-scan, query-optimization"
-					]
-				},
-				{
-					"type": "array",
-					"items": { "type": "string" },
-					"description": "Array of keyword strings.",
-					"examples": [["indexes", "performance", "sequential-scan"]]
-				}
-			]
+			"type": "string",
+			"description": "Keywords describing the rule as a comma-separated list of strings.",
+			"examples": ["indexes, performance, sequential-scan, query-optimization"]
 		}
 	}
 }
